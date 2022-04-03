@@ -26,10 +26,10 @@ https://github.com/ghashe/timed-coding-quiz-with-multiple-choice-questions/issue
 
 ##Getting Started
 Using the following link, you can clone the most recent version of repo into your machine
-• HTTP web link: https://github.com/ghashe/timed-coding-quiz-with-multiple-choice-questions
+• https://github.com/ghashe/quiz-application
 
 Use the following link to open in your browser
-• https://ghashe.github.io/timed-coding-quiz-with-multiple-choice-questions/
+• https://ghashe.github.io/quiz-application/
 
 ##Dependencies
 • Internet connection
@@ -40,7 +40,7 @@ Use the following link to open in your browser
 
 ##Executing program
 Put the following URL on the address bar of any browser and press enter
-• https://ghashe.github.io/timed-coding-quiz-with-multiple-choice-questions/
+• https://ghashe.github.io/quiz-application/
 
 ##Help
 • If you need any help running the website, contact me using the contact information provided in the contact section
