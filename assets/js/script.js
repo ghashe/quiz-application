@@ -68,6 +68,10 @@ function fetchQuestions(index) {
   }
 }
 
+// Answer selected message
+let correctAnswer = "<p>Correct!</p>";
+let wrongAnswer = "<p>Wrong!</div>";
+
 function optionSelected(answer) {
   let userSelectedAnswer = answer.textContent;
   let rightAnswer = questions[numberOfQuestion].answer;
@@ -76,8 +80,10 @@ function optionSelected(answer) {
   if (userSelectedAnswer == rightAnswer) {
     answer.classList.add("correct");
     console.log("correct");
+    answer.insertAdjacentHTML("beforeend", correctAnswer);
   } else {
     answer.classList.add("wrong");
+    answer.insertAdjacentHTML("beforeend", wrongAnswer);
 
     // If the wrong answer is selected, select the correct one and display it to the user
     for (let i = 0; i < allChoices; i++) {
@@ -103,3 +109,18 @@ next.onclick = function () {
 //  Add a div that inserts the results of the selected option (Correct! or Wrong!)
 let correctAlert = '<div class="correct_asnwer"><p>Correct!</p></div>';
 let wrongAlert = '<div class="correct_asnwer"><p>Wrong!</p></div>';
+
+var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+
+// Update the count down every 1 second
+var timeleft = 30;
+document.getElementById("countdowntimer").textContent = timeleft;
+
+var downloadTimer = setInterval(function () {
+  timeleft--;
+  document.getElementById("countdowntimer").textContent = timeleft;
+  if (timeleft <= 0) {
+    clearInterval(downloadTimer);
+    document.getElementById("countdowntimer").innerHTML = "Expired";
+  }
+}, 10000);

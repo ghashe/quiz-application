@@ -56,11 +56,12 @@ header {
 
 .quiz_start_btn {
   width: 320px;
-  height: 180px;
+  height: 160px;
   background: rgb(206, 213, 219);
   display: inline-block;
   text-align: center;
   border-radius: 5px;
+  box-shadow: -2px -2px 2px grey;
 
 }
 
@@ -68,15 +69,15 @@ header {
   width: 100%;
   height: 50px;
   padding-top: 18px;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   color: rgb(48, 63, 194);
   font-size: 2em;
   border-bottom: 1px solid rgb(160, 155, 155);
 }
 
 .quiz_start_btn button {
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   border-radius: 50%;
   font-size: 2em;
   border: 2px solid rgb(107, 114, 107);
@@ -297,8 +298,6 @@ background: white;
 background: rgb(177, 238, 162);
 color: rgb(0, 16, 247);
 border: 1px solid rgb(41, 40, 40);
-
-
 margin: 5px;
 padding: 5px 15px;
 border-radius: 5px;
@@ -308,16 +307,13 @@ font-weight: 500;
 align-items: center;
 display: flex;
 justify-content: space-between;
-cursor: pointer;
-text-transform: capitalize;
-transition: transform 0.5s ease-out;
+user-select: none;
 }
 
 .choice_list .choice.wrong {
   background: rgb(233, 175, 175);
   color:rgb(0, 0, 0);
   border: 1px solid grey;
-
   margin: 5px;
   padding: 5px 15px;
   border-radius: 5px;
@@ -327,9 +323,7 @@ transition: transform 0.5s ease-out;
   align-items: center;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
-  text-transform: capitalize;
-  transition: transform 0.5s ease-out
+  user-select: none;
   }
 
   .choice_list .choice.disabled {
