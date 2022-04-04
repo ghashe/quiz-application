@@ -37,17 +37,18 @@ header {
   position: absolute;
   top: 20%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   transition: all 0.3s ease;
   
 }
+
 
 .quiz_info_container.activeInfo,
 .question_list_wrapper.activeQuiz{
   z-index: 5;
   opacity: 1;
   pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -40%) scale(1);
 }
 
 /* apply styling to quiz star button */
@@ -171,9 +172,11 @@ footer {
 }
 
 .question_list_wrapper {
-  margin-top: 200px;
+  background: rgb(255, 255, 255);
+  margin-top: 170px;
   width: auto;
   flex: 1;
+  position: relative;
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(0.9)
@@ -219,10 +222,7 @@ footer {
     width: 95%;
 }
 
-.question_list_wrapper  {
-background: white;
 
-}
 .question_list_wrapper header {
   height: 70px;
   padding: 0 30px;
@@ -444,12 +444,4 @@ footer .next:hover {
 .quiz_info_list{
   margin-bottom: 4px;
 }
-
-}
-
-.question_list_wrapper{
-  position: relative;
-}
-body {
-  margin-top: 10px;
 }
