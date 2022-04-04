@@ -11,7 +11,7 @@
 }
 
 body {
-  background: #ededed;
+  background: #ffffff;
   color: var(--grey);
   margin: 0;
   padding: 0;
@@ -38,8 +38,6 @@ header {
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0px 4px 8px rgb(0, 0, 0, 0.2),
-  0px 6px 20px rgb(0, 0, 0, 0.19);
   transition: all 0.3s ease;
   
 }
@@ -173,7 +171,7 @@ footer {
 }
 
 .question_list_wrapper {
-  margin-top: 170px;
+  margin-top: 200px;
   width: auto;
   flex: 1;
   opacity: 0;
@@ -189,7 +187,6 @@ footer {
 .question_list {
   list-style: none;
   padding: 15px;
-  height: calc(100% - 50px);
   background: rgb(196, 196, 196);
   border-radius: 12px;
   border: 2px solid var(--grey);
