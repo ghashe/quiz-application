@@ -22,6 +22,7 @@ continue_btn.onclick = function () {
   quiz_info_container.classList.remove("activeInfo");
   quiz_container.classList.add("activeQuiz");
   fetchQuestions(0);
+  timeLeft(30);
 };
 
 // Adding a method to get an array that returns questions and answers and displays them in the user interface
@@ -113,14 +114,17 @@ let wrongAlert = '<div class="correct_asnwer"><p>Wrong!</p></div>';
 var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
 
 // Update the count down every 1 second
-var timeleft = 30;
-document.getElementById("countdowntimer").textContent = timeleft;
+imeleft = timeGiven - timePassed;
 
-var downloadTimer = setInterval(function () {
-  timeleft--;
-  document.getElementById("countdowntimer").textContent = timeleft;
-  if (timeleft <= 0) {
-    clearInterval(downloadTimer);
-    document.getElementById("countdowntimer").innerHTML = "Expired";
-  }
-}, 10000);
+function timeLeft(count) {
+  // document.getElementById("countdowntimer").innerHTML = 15;
+  var count;
+  var interval = setInterval(function () {
+    document.getElementById("countdowntimer").innerHTML = count;
+    count--;
+    if (count === 0) {
+      clearInterval(interval);
+      document.getElementById("countdowntimer").innerHTML = "Expired";
+    }
+  }, 1000);
+}
