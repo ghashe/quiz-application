@@ -70,8 +70,10 @@ function fetchQuestions(index) {
 }
 
 // Answer selected message
-let correctAnswer = "<p>Correct!</p>";
-let wrongAnswer = "<p>Wrong!</div>";
+let correctAnswer =
+  "<p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspCorrect!</p>";
+let wrongAnswer =
+  "<p> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Wrong!</div>";
 
 function optionSelected(answer) {
   let userSelectedAnswer = answer.textContent;
@@ -99,6 +101,10 @@ function optionSelected(answer) {
   for (let i = 0; i < allChoices; i++) {
     choiceList.children[i].classList.add("disabled");
   }
+
+  if (count == "Expired") {
+    choiceList.children[i].classList.add("disabled");
+  }
 }
 
 var next = quiz_container.querySelector(".next");
@@ -108,16 +114,15 @@ next.onclick = function () {
 };
 
 //  Add a div that inserts the results of the selected option (Correct! or Wrong!)
-let correctAlert = '<div class="correct_asnwer"><p>Correct!</p></div>';
-let wrongAlert = '<div class="correct_asnwer"><p>Wrong!</p></div>';
+let correctAlert =
+  '<div class="correct_asnwer"><p>`       Correct!`"     " + </p></div>';
+let wrongAlert = '<div class="wrong_asnwer"><p>"     " + Wrong!</p></div>';
 
 var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
 
 // Update the count down every 1 second
-imeleft = timeGiven - timePassed;
 
 function timeLeft(count) {
-  // document.getElementById("countdowntimer").innerHTML = 15;
   var count;
   var interval = setInterval(function () {
     document.getElementById("countdowntimer").innerHTML = count;
@@ -125,6 +130,7 @@ function timeLeft(count) {
     if (count === 0) {
       clearInterval(interval);
       document.getElementById("countdowntimer").innerHTML = "Expired";
+      quiz_container.classList.classList.remove("activeQuiz");
     }
   }, 1000);
 }
