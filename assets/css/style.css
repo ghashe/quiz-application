@@ -33,7 +33,7 @@ header {
 
 .quiz_info_container,
 .question_list_wrapper,
-.score {
+.result_container {
   position: absolute;
   top: 50px;
   left: 50%;
@@ -61,6 +61,12 @@ header {
   transform: translate(-50%, -300px) scale(1);
 }
 
+.result_container.activeResult{
+  z-index: 5;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -300px) scale(1);
+}
 
 /* apply styling to quiz star button */
 
@@ -260,14 +266,14 @@ footer {
 #time_left{ 
   width: 60px;
   height: 60px;
-  font-size: 1.2em;
+  font-size: 2.5em;
   font-weight: 500;
   background: rgb(97, 252, 244);
   color: red;
   text-align: center;
   line-height: 30px;
   border-radius: 50%;
-  border: 6px solid #107986;
+  border: 1px solid #107986;
   user-select: none;
   display: flex;
   align-items: center;
@@ -360,7 +366,8 @@ user-select: none;
   user-select: none;
 }
 
-footer .next {
+ .next {
+  display: none;
   background-color: hsl(0, 0%, 100%);
   color: rgb(0, 0, 0);
   border-radius: 10px;
@@ -373,7 +380,7 @@ footer .next:hover {
   background: rgb(62, 135, 230);
 }
 
-.score {
+.result_container {
   width: 500px;
   padding: 25px 30px;
   border-radius: 10px;
@@ -387,7 +394,7 @@ footer .next:hover {
   transform: translate(-50%, -50%) scale((0.8));
 }
 
-.score-message span {
+.result-message span {
   display: flex;
   font-size: 1em;
 }
@@ -395,17 +402,17 @@ footer .next:hover {
   font-size: 1em;
   font-weight: 500;
 }
-.score-message p {
+.result-message p {
   padding: 0 3px;
   font-weight: 600;
 }
-.score .buttons {
+.result_container .buttons {
   display: flex;
   margin: 20px 0;
   
 }
 
-.score .buttons button {
+.result_container .buttons button {
   border-radius: 6px;
   margin: 0 5px;
   height: 40px;
@@ -416,7 +423,7 @@ footer .next:hover {
   transition: transform 0.5s ease-out;
 }
 
-.score .buttons button:hover {
+.result_container .buttons button:hover {
   color: black;
   font-weight: 600;
   transition: transform 0.2s ease-out;

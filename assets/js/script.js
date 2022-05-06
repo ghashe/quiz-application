@@ -6,6 +6,8 @@ var exit_btn = quiz_info_container.querySelector(".buttons .exit");
 var continue_btn = quiz_info_container.querySelector(".buttons .btn");
 var quiz_container = document.querySelector(".question_list_wrapper");
 var choiceList = document.querySelector(".choice_list");
+var time_container = document.querySelector(".app_header");
+var time_left = time_container.querySelector("#count_down_timer");
 
 // When the start button is clicked, we are taken to the quiz's rules page
 start_btn.onclick = function () {
@@ -17,19 +19,9 @@ exit_btn.onclick = function () {
   quiz_info_container.classList.remove("activeInfo");
 };
 
-// If the continue button is clicked, we are taken forward to the actual quiz page
-continue_btn.onclick = function () {
-  quiz_info_container.classList.remove("activeInfo");
-  quiz_container.classList.add("activeQuiz");
-  fetchQuestions(0);
-  timeLeft(30);
-};
+// number_of_question = next.onclick.number_of_question++;
 
-// Adding a method to get an array that returns questions and answers and displays them in the user interface
-var numberOfQuestion = 0;
-// numberOfQuestion = next.onclick.numberOfQuestion++;
-
-function fetchQuestions(index) {
+function fetch_questions(index) {
   var questionClassName = document.querySelector(".question");
 
   var questionNumberClassName = document.querySelector(".number_of_question");
@@ -76,8 +68,9 @@ let wrongAnswer =
   "<p> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Wrong!</div>";
 
 function optionSelected(answer) {
+  clearInterval(time_linterval);
   let userSelectedAnswer = answer.textContent;
-  let rightAnswer = questions[numberOfQuestion].answer;
+  let rightAnswer = questions[count_of_question].answer;
   let allChoices = choiceList.children.length;
 
   if (userSelectedAnswer == rightAnswer) {
@@ -86,6 +79,7 @@ function optionSelected(answer) {
     answer.insertAdjacentHTML("beforeend", correctAnswer);
   } else {
     answer.classList.add("wrong");
+    console.log("incorrect");
     answer.insertAdjacentHTML("beforeend", wrongAnswer);
 
     // If the wrong answer is selected, select the correct one and display it to the user
@@ -96,41 +90,79 @@ function optionSelected(answer) {
     }
   }
 
-  // One chance is given to the user to choose the answer; once the answer is selected, options are disabled
+  // One chance is given to the user to choose the answer; once the answer is selected, options will be disabled
 
   for (let i = 0; i < allChoices; i++) {
-    choiceList.children[i].classList.add("disabled");
+    choiceList.children[i].classList.add("block");
   }
+  next.style.display = "block";
+}
 
-  if (count == "Expired") {
-    choiceList.children[i].classList.add("disabled");
+// If the continue button is clicked, we are taken forward to the actual quiz page
+continue_btn.onclick = function () {
+  quiz_info_container.classList.remove("activeInfo");
+  quiz_container.classList.add("activeQuiz");
+  fetch_questions(0);
+  // timeLeft(30);
+  count_down_timer(15);
+};
+
+// Adding a timer function
+var count_of_question = 0;
+var number_of_question = 1;
+var time_linterval;
+var actual_time = 15;
+
+function count_down_timer(time) {
+  time_linterval = setInterval(timer, 1000);
+  function timer() {
+    time_left.textContent = time;
+    time--;
+
+    // Timer with one digit is converted to two digit when it is less than nine
+    if (time < 9) {
+      time_left.textContent = "0" + time_left.textContent; // This line adds a prefix zero only to the timers less than ten
+    }
+
+    // If the time limit has expired before the answer has been selected, then the following will apply
+    if (time < 0) {
+      clearInterval(time_linterval);
+    }
   }
 }
+// function change_timer_background() {
+//   var background = document.getElementById("time_left");
+//   var text = document.getElementById("count_down_timer");
+//   var background_color = ["green", "orange", "red"];
+//   var text_color = ["white", "blue"];
+//   if (this.time <= 10) {
+//     background.style.backgroundColor = background_color[0];
+//   } else if (this.time <= 5) {
+//     (background.style.backgroundColor = background_color[1]),
+//       (text.style.color = text_color[1]);
+//   } else {
+//     (background.style.backgroundColor = background_color[2]),
+//       (text.style.color = text_color[0]);
+//   }
+//   setInterval(change_timer_background, 1000);
+//   if (this.time > 549) {
+//     clearInterval(time_left_indicator_background_interval);
+//   }
+// }
 
 var next = quiz_container.querySelector(".next");
 next.onclick = function () {
-  numberOfQuestion++;
-  fetchQuestions(numberOfQuestion);
+  if (count_of_question < questions.length - 1) {
+    count_of_question++;
+    number_of_question++;
+    fetch_questions(count_of_question);
+    clearInterval(time_linterval);
+    count_down_timer(actual_time);
+    next.style.display = "none";
+    // questionItself(number_of_question);
+  } else {
+    console.log("Questions complited");
+  }
+
+  // change_timer_background();
 };
-
-//  Add a div that inserts the results of the selected option (Correct! or Wrong!)
-let correctAlert =
-  '<div class="correct_asnwer"><p>`       Correct!`"     " + </p></div>';
-let wrongAlert = '<div class="wrong_asnwer"><p>"     " + Wrong!</p></div>';
-
-var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
-
-// Update the count down every 1 second
-
-function timeLeft(count) {
-  var count;
-  var interval = setInterval(function () {
-    document.getElementById("countdowntimer").innerHTML = count;
-    count--;
-    if (count === 0) {
-      clearInterval(interval);
-      document.getElementById("countdowntimer").innerHTML = "Expired";
-      quiz_container.classList.classList.remove("activeQuiz");
-    }
-  }, 1000);
-}
